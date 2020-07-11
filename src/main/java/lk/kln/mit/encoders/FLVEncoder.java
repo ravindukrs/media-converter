@@ -6,7 +6,7 @@ import ws.schild.jave.*;
 
 import java.io.File;
 
-public class FLVEncoder extends Thread implements Converter {
+public class FLVEncoder extends Converter {
 
     private int x = (int) (Math.random()*100);
     private String path="MediaContent/Source/MP4toFLV/videoplayback.mp4";
@@ -37,9 +37,9 @@ public class FLVEncoder extends Thread implements Converter {
         VideoAttributes video = new VideoAttributes();
         video.setCodec("h264");
         video.setX264Profile(VideoAttributes.X264_PROFILE.BASELINE);
-        video.setBitRate(640000);
-        video.setFrameRate(30);
-        video.setSize(new VideoSize(1280, 720));
+        video.setBitRate(320000);
+        video.setFrameRate(15);
+        video.setSize(new VideoSize(400, 300));
 
         /* Step 4. Set Encoding Attributes*/
         EncodingAttributes attrs = new EncodingAttributes();

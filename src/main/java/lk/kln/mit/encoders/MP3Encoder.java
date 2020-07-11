@@ -6,7 +6,7 @@ import ws.schild.jave.*;
 
 import java.io.File;
 
-public class MP3Encoder extends Thread implements Converter {
+public class MP3Encoder extends Converter {
 
     private int x = (int) (Math.random()*100);
     private String path="MediaContent/Source/MP4toMP3/videoplayback.mp4";

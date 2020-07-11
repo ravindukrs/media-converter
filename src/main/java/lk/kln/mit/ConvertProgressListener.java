@@ -30,7 +30,6 @@ public class ConvertProgressListener implements EncoderProgressListener {
 
         if(progress == 100.0){
             System.out.print("Encoding Complete ("+currentlyEncodingFile.getName()+")\r");
-            System.out.println(" ");
         }
 
     }

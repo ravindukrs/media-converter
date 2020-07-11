@@ -30,8 +30,21 @@ public class Main {
 //        MP3Encoder mp3Converter1 = new MP3Encoder();
 //        mp3Converter1.start();
 
-        FLVEncoder mkvConv = new FLVEncoder();
-        mkvConv.start();
+
+        MediaConverterFactory converterFactory = new MediaConverterFactory();
+
+        Converter mp3Converter = converterFactory.getConverter("MP3");
+        Converter flvConverter = converterFactory.getConverter("FLV");
+        Converter mkvConverter = converterFactory.getConverter("MKV");
+
+        mp3Converter.start(); //Cannot call start method here
+        flvConverter.start(); //Cannot call start method here
+        mkvConverter.start(); //Cannot call start method here
+
+
+//        MKVEncoder mkvConverter2 = new MKVEncoder();
+//        mkvConverter2.start();
+
 
 
 
