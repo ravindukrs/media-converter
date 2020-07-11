@@ -1,5 +1,11 @@
 package lk.kln.mit;
 
+import lk.kln.mit.encoders.FLVEncoder;
+import lk.kln.mit.encoders.MKVEncoder;
+import lk.kln.mit.encoders.MP3Encoder;
+import org.apache.log4j.BasicConfigurator;
+import org.apache.log4j.Level;
+import org.apache.log4j.Logger;
 import ws.schild.jave.*;
 
 import java.io.File;
@@ -7,29 +13,26 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
+        BasicConfigurator.configure();
+        Logger.getRootLogger().setLevel(Level.OFF);
 
-        String path="MediaContent/Source/videoplayback.mp4";
-        String pathpm3="MediaContent/Target/output2.mp3";
+        //MediaConverter mediaConverter = new MediaConverter();
+        //mediaConverter.convertToMp3("MediaContent/Source/MP4toMP3/videoplayback.mp4", "MediaContent/Target/MP4toMPConverted/output10.mp3");
+//        MP3Converter mp3Converter1 = new MP3Converter();
+//        mp3Converter1.start();
+//
+//        MP3Converter mp3Converter2 = new MP3Converter();
+//        mp3Converter2.start();
+//
+//        MP3Converter mp3Converter3 = new MP3Converter();
+//        mp3Converter3.start();
 
-        File video= new File(path);
+//        MP3Encoder mp3Converter1 = new MP3Encoder();
+//        mp3Converter1.start();
 
-        File target = new File(pathpm3);
-        AudioAttributes audio = new AudioAttributes();
-        audio.setCodec("libmp3lame");
-        audio.setBitRate(new Integer(128000));
-        audio.setChannels(new Integer(2));
-        audio.setSamplingRate(new Integer(44100));
+        FLVEncoder mkvConv = new FLVEncoder();
+        mkvConv.start();
 
-        EncodingAttributes attrs = new EncodingAttributes();
-        attrs.setFormat("mp3");
-        attrs.setAudioAttributes(audio);
-
-        Encoder encoder = new Encoder();
-        try {
-            encoder.encode(new MultimediaObject(video), target, attrs);
-        } catch (EncoderException e) {
-            e.printStackTrace();
-        }
 
 
     }
