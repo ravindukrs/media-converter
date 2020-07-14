@@ -1,6 +1,7 @@
 package lk.kln.mit;
 
 import lk.kln.mit.config.ConfigHandler;
+import lk.kln.mit.watchers.MP3Watcher;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -39,8 +40,11 @@ public class Main {
 //        MKVEncoder mkvConverter2 = new MKVEncoder();
 //        mkvConverter2.start();
 
-        ConfigHandler configHandler = ConfigHandler.getInstance();
-        System.out.println(configHandler.getValue("source.mp3"));
+//        ConfigHandler configHandler = ConfigHandler.getInstance();
+//        System.out.println(configHandler.getPath("source.mp3"));
+
+        MP3Watcher mp3Watcher = MP3Watcher.getInstance();
+        mp3Watcher.start();
 
 
     }

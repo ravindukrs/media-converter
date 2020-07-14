@@ -9,20 +9,20 @@ import java.io.File;
 public class MP3Encoder extends Converter {
 
     private int x = (int) (Math.random()*100);
-    private String path="MediaContent/Source/MP4toMP3/videoplayback.mp4";
-    private String destinationPath="MediaContent/Target/MP4toMP3Converted/output10"+x+".mp3";
+    private String path= config.getPath("source.mp3");
+    private String destinationPath= config.getPath("destination.mp3");
+    private String fileName = null;
 
     public MP3Encoder(){}
 
-    public MP3Encoder(String path, String destinationPath){
-        this.path = path;
-        this.destinationPath = destinationPath;
+    public MP3Encoder(String fileName){
+        this.fileName = fileName;
     }
 
     @Override
     public void encode() {
-        File video= new File(path);
-        File target = new File(destinationPath);
+        File video= new File(path+fileName);
+        File target = new File(destinationPath+fileName+".mp3");
 
         ConvertProgressListener listener = new ConvertProgressListener(video);
 
