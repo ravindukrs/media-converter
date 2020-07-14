@@ -12,7 +12,6 @@ public class MP3Watcher extends Watcher {
 
     private static MP3Watcher instance = new MP3Watcher();
 
-    FolderObserver folderObserver = new FolderObserver("MediaContent/Source/MP4toMP3/");
     @Override
     public void run() {
         try {
