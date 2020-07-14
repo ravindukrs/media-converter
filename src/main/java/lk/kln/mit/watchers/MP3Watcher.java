@@ -1,7 +1,6 @@
 package lk.kln.mit.watchers;
 
 import lk.kln.mit.Converter;
-import lk.kln.mit.FolderObserver;
 import lk.kln.mit.Watcher;
 
 import java.io.File;
@@ -17,7 +16,7 @@ public class MP3Watcher extends Watcher {
         try {
 
             String[] fileNames;
-            File f = new File("MediaContent/Source/MP4toMP3/");
+            File f = new File(config.getPath("source.mp3"));
             fileNames = f.list();
 
             for (String file : fileNames) {
@@ -28,7 +27,7 @@ public class MP3Watcher extends Watcher {
             }
 
             WatchService watchService = FileSystems.getDefault().newWatchService();
-            Path directory = Paths.get("MediaContent/Source/MP4toMP3/");
+            Path directory = Paths.get(config.getPath("source.mp3"));
             WatchKey watchKey = directory.register(watchService, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_DELETE, StandardWatchEventKinds.ENTRY_MODIFY);
 
             while(true){

@@ -8,7 +8,6 @@ import java.io.File;
 
 public class MP3Encoder extends Converter {
 
-    private int x = (int) (Math.random()*100);
     private String path= config.getPath("source.mp3");
     private String destinationPath= config.getPath("destination.mp3");
     private String fileName = null;
@@ -22,7 +21,7 @@ public class MP3Encoder extends Converter {
     @Override
     public void encode() {
         File video= new File(path+fileName);
-        File target = new File(destinationPath+fileName+".mp3");
+        File target = new File(destinationPath+fileName.replace(".mp4","")+".mp3");
 
         ConvertProgressListener listener = new ConvertProgressListener(video);
 
@@ -37,9 +36,11 @@ public class MP3Encoder extends Converter {
         attrs.setFormat("mp3");
         attrs.setAudioAttributes(audio);
 
-        Encoder encoder = new Encoder();
+
         try {
+            Encoder encoder = new Encoder();
             encoder.encode(new MultimediaObject(video), target, attrs, listener);
+            video.delete();
         } catch (
                 EncoderException e) {
             e.printStackTrace();

@@ -8,28 +8,26 @@ import java.io.File;
 
 public class FLVEncoder extends Converter {
 
-    private int x = (int) (Math.random()*100);
-    private String path="MediaContent/Source/MP4toFLV/videoplayback.mp4";
-    private String destinationPath="MediaContent/Target/MP4toFLVConverted/output10"+x+".flv";
+    private String path= config.getPath("source.flv");
+    private String destinationPath= config.getPath("destination.flv");
+    private String fileName = null;
 
     public FLVEncoder(){}
 
-    public FLVEncoder(String path, String destinationPath){
-        this.path = path;
-        this.destinationPath = destinationPath;
+    public FLVEncoder(String fileName){
+        this.fileName = fileName;
     }
 
     @Override
     public void encode() {
 
-        File videoFile= new File(path);
-        File target = new File(destinationPath);
+        File videoFile= new File(path+fileName);
+        File target = new File(destinationPath+fileName.replace(".mp4","")+".flv");
 
         ConvertProgressListener listener = new ConvertProgressListener(videoFile);
 
         AudioAttributes audio = new AudioAttributes();
         audio.setCodec("aac");
-// here 64kbit/s is 64000
         audio.setBitRate(64000);
         audio.setChannels(2);
         audio.setSamplingRate(44100);
@@ -41,7 +39,6 @@ public class FLVEncoder extends Converter {
         video.setFrameRate(15);
         video.setSize(new VideoSize(400, 300));
 
-        /* Step 4. Set Encoding Attributes*/
         EncodingAttributes attrs = new EncodingAttributes();
         attrs.setFormat("flv");
         attrs.setAudioAttributes(audio);
@@ -50,8 +47,8 @@ public class FLVEncoder extends Converter {
         try {
             Encoder encoder = new Encoder();
             encoder.encode(new MultimediaObject(videoFile), target, attrs, listener);
+            videoFile.delete();
         } catch (Exception e) {
-            /*Handle here the video failure*/
             e.printStackTrace();
         }
 

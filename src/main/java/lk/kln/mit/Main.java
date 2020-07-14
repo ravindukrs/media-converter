@@ -1,6 +1,8 @@
 package lk.kln.mit;
 
 import lk.kln.mit.config.ConfigHandler;
+import lk.kln.mit.watchers.FLVWatcher;
+import lk.kln.mit.watchers.MKVWatcher;
 import lk.kln.mit.watchers.MP3Watcher;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
@@ -45,6 +47,10 @@ public class Main {
 
         MP3Watcher mp3Watcher = MP3Watcher.getInstance();
         mp3Watcher.start();
+        FLVWatcher flvWatcher = FLVWatcher.getInstance();
+        flvWatcher.start();
+        MKVWatcher mkvWatcher = MKVWatcher.getInstance();
+        mkvWatcher.start();
 
 
     }

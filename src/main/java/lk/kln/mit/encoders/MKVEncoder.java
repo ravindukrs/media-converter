@@ -8,15 +8,14 @@ import java.io.File;
 
 public class MKVEncoder extends Converter{
 
-    private int x = (int) (Math.random()*100);
-    private String path="MediaContent/Source/MP4toMKV/videoplayback.mp4";
-    private String destinationPath="MediaContent/Target/MP4toMKVConverted/output10"+x+".mkv";
+    private String path= config.getPath("source.mkv");
+    private String destinationPath= config.getPath("destination.mkv");
+    private String fileName = null;
 
     public MKVEncoder(){}
 
-    public MKVEncoder(String path, String destinationPath){
-        this.path = path;
-        this.destinationPath = destinationPath;
+    public MKVEncoder(String fileName){
+        this.fileName = fileName;
     }
 
 
@@ -28,14 +27,13 @@ public class MKVEncoder extends Converter{
     @Override
     public void encode() {
 
-        File videoFile= new File(path);
-        File target = new File(destinationPath);
+        File videoFile= new File(path+fileName);
+        File target = new File(destinationPath+fileName.replace(".mp4","")+".mkv");
 
         ConvertProgressListener listener = new ConvertProgressListener(videoFile);
 
         AudioAttributes audio = new AudioAttributes();
         audio.setCodec("aac");
-// here 64kbit/s is 64000
         audio.setBitRate(64000);
         audio.setChannels(2);
         audio.setSamplingRate(44100);
@@ -47,7 +45,6 @@ public class MKVEncoder extends Converter{
         video.setFrameRate(15);
         video.setSize(new VideoSize(400, 300));
 
-        /* Step 4. Set Encoding Attributes*/
         EncodingAttributes attrs = new EncodingAttributes();
         attrs.setFormat("matroska");
         attrs.setAudioAttributes(audio);
@@ -56,8 +53,8 @@ public class MKVEncoder extends Converter{
         try {
             Encoder encoder = new Encoder();
             encoder.encode(new MultimediaObject(videoFile), target, attrs, listener);
+            videoFile.delete();
         } catch (Exception e) {
-            /*Handle here the video failure*/
             e.printStackTrace();
         }
     }

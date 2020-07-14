@@ -16,7 +16,7 @@ public class FLVWatcher extends Watcher {
         try {
 
             String[] fileNames;
-            File f = new File("MediaContent/Source/MP4toFLV/");
+            File f = new File(config.getPath("source.flv"));
             fileNames = f.list();
 
             for (String file : fileNames) {
@@ -29,7 +29,7 @@ public class FLVWatcher extends Watcher {
 
             WatchService watchService = FileSystems.getDefault().newWatchService();
 
-            Path directory = Paths.get("MediaContent/Source/MP4toFLV/");
+            Path directory = Paths.get(config.getPath("source.flv"));
 
             WatchKey watchKey = directory.register(watchService, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_DELETE, StandardWatchEventKinds.ENTRY_MODIFY);
 

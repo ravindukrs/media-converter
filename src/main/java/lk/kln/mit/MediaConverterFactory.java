@@ -13,10 +13,10 @@ public class MediaConverterFactory {
             return new MP3Encoder(fileName);
 
         } else if(converterType.equalsIgnoreCase("MKV")){
-            return new MKVEncoder();
+            return new MKVEncoder(fileName);
 
         } else if(converterType.equalsIgnoreCase("FLV")){
-            return new FLVEncoder();
+            return new FLVEncoder(fileName);
         }
 
         return null;

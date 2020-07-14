@@ -4,7 +4,6 @@ package lk.kln.mit;
         import org.w3c.dom.ls.LSOutput;
         import ws.schild.jave.EncoderProgressListener;
         import ws.schild.jave.MultimediaInfo;
-
         import java.io.File;
 
 
@@ -21,6 +20,7 @@ public class ConvertProgressListener implements EncoderProgressListener {
 
     }
 
+    int count = 1;
     @Override
     public void progress(int i) {
         double progress = Math.round(i / 1000.00*100);
@@ -29,7 +29,7 @@ public class ConvertProgressListener implements EncoderProgressListener {
         System.out.print(" "+progress+"%\r");
 
         if(progress == 100.0){
-            System.out.print("Encoding Complete ("+currentlyEncodingFile.getName()+")\r");
+            System.out.print("Encoding Complete ("+currentlyEncodingFile.getName()+")\r\n");
         }
 
     }

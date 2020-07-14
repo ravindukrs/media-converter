@@ -16,7 +16,7 @@ public class MKVWatcher extends Watcher {
         try {
 
             String[] fileNames;
-            File f = new File("MediaContent/Source/MP4toMKV/");
+            File f = new File(config.getPath("source.mkv"));
             fileNames = f.list();
 
             for (String file : fileNames) {
@@ -28,7 +28,7 @@ public class MKVWatcher extends Watcher {
 
             WatchService watchService = FileSystems.getDefault().newWatchService();
 
-            Path directory = Paths.get("MediaContent/Source/MP4toMKV/");
+            Path directory = Paths.get(config.getPath("source.mkv"));
 
             WatchKey watchKey = directory.register(watchService, StandardWatchEventKinds.ENTRY_CREATE, StandardWatchEventKinds.ENTRY_DELETE, StandardWatchEventKinds.ENTRY_MODIFY);
 
