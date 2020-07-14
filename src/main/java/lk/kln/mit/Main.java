@@ -1,15 +1,9 @@
 package lk.kln.mit;
 
-import lk.kln.mit.encoders.FLVEncoder;
-import lk.kln.mit.encoders.MKVEncoder;
-import lk.kln.mit.encoders.MP3Encoder;
+import lk.kln.mit.config.ConfigHandler;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
-import ws.schild.jave.*;
-
-import java.io.File;
-import java.util.List;
 
 public class Main {
     public static void main(String[] args) {
@@ -31,21 +25,22 @@ public class Main {
 //        mp3Converter1.start();
 
 
-        MediaConverterFactory converterFactory = new MediaConverterFactory();
-
-        Converter mp3Converter = converterFactory.getConverter("MP3");
-        Converter flvConverter = converterFactory.getConverter("FLV");
-        Converter mkvConverter = converterFactory.getConverter("MKV");
-
-        mp3Converter.start(); //Cannot call start method here
-        flvConverter.start(); //Cannot call start method here
-        mkvConverter.start(); //Cannot call start method here
+//        MediaConverterFactory converterFactory = new MediaConverterFactory();
+//
+//        Converter mp3Converter = converterFactory.getConverter("MP3");
+//        Converter flvConverter = converterFactory.getConverter("FLV");
+//        Converter mkvConverter = converterFactory.getConverter("MKV");
+//
+//        mp3Converter.start(); //Cannot call start method here
+//        flvConverter.start(); //Cannot call start method here
+//        mkvConverter.start(); //Cannot call start method here
 
 
 //        MKVEncoder mkvConverter2 = new MKVEncoder();
 //        mkvConverter2.start();
 
-
+        ConfigHandler configHandler = ConfigHandler.getInstance();
+        System.out.println(configHandler.getValue("source.mp3"));
 
 
     }

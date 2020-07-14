@@ -23,7 +23,7 @@ public class FolderWatcher {
 
     public void encode(){
         for (File media : fileList){
-            MediaConverter converter = new MediaConverter();
+            //MediaConverter converter = new MediaConverter();
         }
     }
 }
