@@ -8,6 +8,7 @@ public class ConfigHandler {
     private static ConfigHandler instance = new ConfigHandler();
 
     public String getPath(String key){
+        //Set inputstream with file path
         try (InputStream input = new FileInputStream("configs/config.properties")) {
 
             Properties prop = new Properties();
@@ -15,7 +16,7 @@ public class ConfigHandler {
             // load a properties file
             prop.load(input);
 
-            // get the property value and print it out
+            // get the property value corresponding to the key passed
             return prop.getProperty(key);
 
         } catch (IOException ex) {

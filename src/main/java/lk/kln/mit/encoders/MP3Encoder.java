@@ -20,13 +20,15 @@ public class MP3Encoder extends Converter {
 
     @Override
     public void encode() {
+        //Set source and destination paths
         File video= new File(path+fileName);
         File target = new File(destinationPath+fileName.replace(".mp4","")+".mp3");
 
+        //Instantiate Listner
         ConvertProgressListener listener = new ConvertProgressListener(video);
 
+        //Add audio attributes
         AudioAttributes audio = new AudioAttributes();
-
         audio.setCodec("libmp3lame");
         audio.setBitRate(28000);
         audio.setChannels(2);

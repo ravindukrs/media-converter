@@ -20,7 +20,7 @@ public class ConvertProgressListener implements EncoderProgressListener {
 
     }
 
-    int count = 1;
+
     @Override
     public void progress(int i) {
         double progress = Math.round(i / 1000.00*100);

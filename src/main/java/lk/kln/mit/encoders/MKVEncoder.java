@@ -26,18 +26,21 @@ public class MKVEncoder extends Converter{
 
     @Override
     public void encode() {
-
+        //Set source and destination paths
         File videoFile= new File(path+fileName);
         File target = new File(destinationPath+fileName.replace(".mp4","")+".mkv");
 
+        //Instantiate Listner
         ConvertProgressListener listener = new ConvertProgressListener(videoFile);
 
+        //Add audio attributes
         AudioAttributes audio = new AudioAttributes();
         audio.setCodec("aac");
         audio.setBitRate(64000);
         audio.setChannels(2);
         audio.setSamplingRate(44100);
 
+        //Add video attributes
         VideoAttributes video = new VideoAttributes();
         video.setCodec("h264");
         video.setX264Profile(VideoAttributes.X264_PROFILE.BASELINE);
