@@ -4,6 +4,7 @@ import lk.kln.mit.config.ConfigHandler;
 import lk.kln.mit.watchers.FLVWatcher;
 import lk.kln.mit.watchers.MKVWatcher;
 import lk.kln.mit.watchers.MP3Watcher;
+import lk.kln.mit.StartConvert;
 import org.apache.log4j.BasicConfigurator;
 import org.apache.log4j.Level;
 import org.apache.log4j.Logger;
@@ -12,6 +13,7 @@ public class Main {
     public static void main(String[] args) {
         BasicConfigurator.configure();
         Logger.getRootLogger().setLevel(Level.OFF);
+        StartConvert.startConvert();
 
         //MediaConverter mediaConverter = new MediaConverter();
         //mediaConverter.convertToMp3("MediaContent/Source/MP4toMP3/videoplayback.mp4", "MediaContent/Target/MP4toMPConverted/output10.mp3");
@@ -45,13 +47,7 @@ public class Main {
 //        ConfigHandler configHandler = ConfigHandler.getInstance();
 //        System.out.println(configHandler.getPath("source.mp3"));
 
-        MP3Watcher mp3Watcher = MP3Watcher.getInstance();
-        mp3Watcher.start();
-        FLVWatcher flvWatcher = FLVWatcher.getInstance();
-        flvWatcher.start();
-        MKVWatcher mkvWatcher = MKVWatcher.getInstance();
-        mkvWatcher.start();
-
+       
 
     }
 }
